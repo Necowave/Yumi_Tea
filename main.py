@@ -525,6 +525,7 @@ def main():
                 CallbackQueryHandler(loyalty, pattern='loyalty'),
                 CallbackQueryHandler(contact, pattern='contact'),
                 CallbackQueryHandler(settings, pattern='settings'),
+                CallbackQueryHandler(back_to_main_menu, pattern='back'),
                 MessageHandler(filters.Regex(r'^(🏠 Главн(ое)? меню|🏠 Main Menu)$'), back_to_main_menu_text)
             ],
             ORDER_CATEGORY: [
@@ -565,8 +566,8 @@ def main():
             ]
         },
         fallbacks=[MessageHandler(filters.TEXT & ~filters.COMMAND, forward_contact)],
-        per_message=False,  # Отключаем отслеживание для каждого сообщения
-        per_chat=True,      # Отслеживаем состояния для каждого чата
+        per_message=False,
+        per_chat=True,
         per_user=True
     )
 
